@@ -131,9 +131,9 @@
             </p>
           </div>
           <div class="social-links" aria-label="Social media">
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">LinkedIn</a>
-            <a href="#" class="social-link">X (Twitter)</a>
+            <a href="#" class="social-link" rel="noopener noreferrer" target="_blank">Instagram</a>
+            <a href="#" class="social-link" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+            <a href="#" class="social-link" rel="noopener noreferrer" target="_blank">X (Twitter)</a>
           </div>
         </div>
       </section>
@@ -152,13 +152,54 @@
     
       const form = document.querySelector('.waitlist-form');
       const helper = form.querySelector('.form-helper');
+      const submitButton = form.querySelector('button[type="submit"]');
+      
+      // Rate limiting: track last submission time
+      let lastSubmitTime = 0;
+      const RATE_LIMIT_MS = 5000; // 5 seconds between submissions
+      
+      // Input sanitization function
+      function sanitizeInput(input) {
+        const div = document.createElement('div');
+        div.textContent = input;
+        return div.innerHTML.trim();
+      }
     
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-    
+        
+        // Rate limiting check
+        const now = Date.now();
+        if (now - lastSubmitTime < RATE_LIMIT_MS) {
+          helper.textContent = 'Please wait a moment before submitting again.';
+          return;
+        }
+        
+        // Sanitize inputs
+        const nameInput = form.querySelector('input[name="name"]');
+        const emailInput = form.querySelector('input[name="email"]');
+        
+        const sanitizedName = sanitizeInput(nameInput.value);
+        const sanitizedEmail = sanitizeInput(emailInput.value);
+        
+        // Basic validation
+        if (!sanitizedName || sanitizedName.length > 100) {
+          helper.textContent = 'Please enter a valid name (max 100 characters).';
+          return;
+        }
+        
+        if (!sanitizedEmail || sanitizedEmail.length > 254) {
+          helper.textContent = 'Please enter a valid email address.';
+          return;
+        }
+        
+        // Disable button during submission
+        submitButton.disabled = true;
         helper.textContent = 'Sending your details…';
-    
-        const formData = new FormData(form);
+        
+        const formData = new FormData();
+        formData.append('name', sanitizedName);
+        formData.append('email', sanitizedEmail);
     
         try {
           const response = await fetch(form.action, {
@@ -172,9 +213,11 @@
     
           helper.textContent = 'Thank you for joining Oviact\'s early community ♥';
           form.reset();
+          lastSubmitTime = now;
         } catch (err) {
           helper.textContent = 'Something went wrong. Please try again in a bit.';
-          console.error(err);
+        } finally {
+          submitButton.disabled = false;
         }
       });
     </script>    

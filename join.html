@@ -69,7 +69,7 @@
             portfolio or publications) and why Oviact resonates with you.
           </p>
           <p>
-            Email: <a href="mailto:careers@oviact.com">careers@oviact.com</a>
+            Email: <a href="#" id="contact-email" data-user="careers" data-domain="oviact.com">careers[at]oviact[dot]com</a>
           </p>
         </div>
       </section>
@@ -84,6 +84,20 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Email obfuscation: reconstruct email on click
+      const emailLink = document.getElementById('contact-email');
+      if (emailLink) {
+        emailLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          const user = this.getAttribute('data-user');
+          const domain = this.getAttribute('data-domain');
+          const email = user + '@' + domain;
+          this.href = 'mailto:' + email;
+          this.textContent = email;
+          window.location.href = this.href;
+        });
+      }
     </script>
   </body>
 </html>
