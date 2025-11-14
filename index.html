@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oviact – Hormonal Companion</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <div class="logo">Oviact</div>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html" class="nav-link is-active">Home</a>
+          <a href="about.html" class="nav-link">About us</a>
+          <a href="join.html" class="nav-link">Join us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero / Waitlist section -->
+      <section class="hero" id="waitlist">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">For women with PCOD/PCOS</p>
+            <h1>Understand your hormones. Decode your cycle. Feel in control.</h1>
+            <p class="lead">
+              Oviact helps you track symptoms, sleep, mood and hormonal patterns, and
+              share meaningful reports with your OB/GYN.
+            </p>
+
+            <form
+              class="waitlist-form"
+              method="POST"
+              action="https://formspree.io/f/your-form-id"
+            >
+              <!-- TODO: Replace the action URL above with your waitlist / forms service endpoint -->
+              <div class="field-group">
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                  aria-label="Your name"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Email address"
+                  aria-label="Email address"
+                />
+              </div>
+              <button type="submit" class="btn btn-accent">
+                Join the waitlist
+              </button>
+              <p class="form-helper">
+                We’ll only reach out with product updates and early access invites.
+              </p>
+            </form>
+          </div>
+
+          <div class="hero-card">
+            <h2>What Oviact helps you do</h2>
+            <ul class="hero-list">
+              <li>Track your cycle, mood, sleep and daily symptoms</li>
+              <li>See patterns in your hormonal activity over time</li>
+              <li>Get food and activity suggestions tailored to your phase</li>
+              <li>Generate OB/GYN-ready reports you can share securely</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services / Offerings -->
+      <section class="section" id="services">
+        <div class="container">
+          <header class="section-header">
+            <h2>What you’ll get with Oviact</h2>
+            <p>
+              Designed for PCOD/PCOS management with a whole-person view of your
+              health.
+            </p>
+          </header>
+
+          <div class="card-grid">
+            <article class="card">
+              <h3>Cycle & hormonal tracking</h3>
+              <p>
+                Log your cycle, ovulation, symptoms and medication to build a clear
+                picture of your hormonal health.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Mood & sleep insights</h3>
+              <p>
+                Understand how your energy, mood, and sleep shift across your cycle
+                so you can plan your days better.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Food & activity guidance</h3>
+              <p>
+                Receive suggestions for meals, movement and rest based on your
+                current phase and how you’re feeling.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Doctor-ready reports</h3>
+              <p>
+                Generate shareable summaries of your cycle, symptoms and lifestyle
+                data for appointments with your OB/GYN.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social / Follow -->
+      <section class="section section-soft" id="social">
+        <div class="container social-grid">
+          <div>
+            <h2>Follow our journey</h2>
+            <p>
+              We’re building Oviact in collaboration with women living with PCOD/PCOS
+              and medical experts.
+            </p>
+          </div>
+          <div class="social-links" aria-label="Social media">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">X (Twitter)</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-flex">
+        <p>© <span id="year"></span> Oviact. All rights reserved.</p>
+        <a href="#waitlist" class="footer-cta">Join the waitlist</a>
+      </div>
+    </footer>
+
+    <script>
+      // Small helper script: update year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

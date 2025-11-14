@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Oviact</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <div class="logo">Oviact</div>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link is-active">About us</a>
+          <a href="join.html" class="nav-link">Join us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="eyebrow">Our story</p>
+          <h1>Building a calmer PCOD/PCOS journey, together.</h1>
+          <p class="lead">
+            Oviact was created to give women a clearer, kinder view of their
+            hormonal health and everyday wellbeing.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container narrow">
+          <h2>Why we’re building Oviact</h2>
+          <p>
+            PCOD and PCOS are chronic conditions that touch every part of life—from
+            cycles and fertility to mood, sleep and energy. Too often, women track
+            pieces of this story across multiple apps, notes and lab reports.
+          </p>
+          <p>
+            We want to bring these pieces together. Oviact focuses on patterns,
+            helping you see how hormones, lifestyle and symptoms connect, and making
+            it easier to have informed conversations with your OB/GYN.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <header class="section-header">
+            <h2>Founders</h2>
+            <p>Oviact is built at the intersection of women’s health and product.</p>
+          </header>
+
+          <div class="card-grid founders-grid">
+            <article class="card founder-card">
+              <h3>Founder Name 1</h3>
+              <p class="founder-role">Product & Experience</p>
+              <p>
+                Brief bio about the founder. You can highlight experience in digital
+                health, consumer products, or building tools for women.
+              </p>
+            </article>
+
+            <article class="card founder-card">
+              <h3>Founder Name 2</h3>
+              <p class="founder-role">Clinical & Research</p>
+              <p>
+                Brief bio about the founder. You can highlight medical background,
+                published work, or experience working with PCOD/PCOS patients.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-flex">
+        <p>© <span id="year"></span> Oviact. All rights reserved.</p>
+        <a href="index.html#waitlist" class="footer-cta">Join the waitlist</a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
