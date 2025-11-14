@@ -233,21 +233,45 @@
           const response = await fetch(form.action, {
             method: 'POST',
             body: formData,
-            mode: 'no-cors' // Required for Google Apps Script
+            redirect: 'follow'
           });
     
-          // Note: With no-cors mode, we can't read the response
-          // Assume success if no error thrown
-          helper.textContent = 'Thank you for joining Oviact\'s early community ♥';
-          form.reset();
+          // Read the response text
+          const responseText = await response.text();
           
-          // Reset security fields after form reset
-          document.getElementById('form-timestamp').value = Date.now();
-          document.getElementById('user-agent').value = navigator.userAgent;
+          // Try to parse JSON response
+          let result;
+          try {
+            result = JSON.parse(responseText);
+          } catch (parseError) {
+            // If can't parse, treat as success (Google Apps Script sometimes returns HTML)
+            result = { status: 'success', message: 'Thank you for joining!' };
+          }
           
-          lastSubmitTime = now;
+          // Handle response based on status
+          if (result.status === 'success') {
+            helper.textContent = 'Thank you for joining Oviact\'s early community ♥';
+            helper.style.color = '';
+            form.reset();
+            
+            // Reset security fields after form reset
+            document.getElementById('form-timestamp').value = Date.now();
+            document.getElementById('user-agent').value = navigator.userAgent;
+            
+            lastSubmitTime = now;
+          } else if (result.status === 'error') {
+            // Display the specific error message from server
+            helper.textContent = result.message || 'Please check your information and try again.';
+            helper.style.color = '#ff6b6b';
+          } else {
+            // Unknown response format
+            helper.textContent = 'Something went wrong. Please try again in a bit.';
+            helper.style.color = '#ff6b6b';
+          }
         } catch (err) {
-          helper.textContent = 'Something went wrong. Please try again in a bit.';
+          // Network error or other issues
+          helper.textContent = 'Unable to connect. Please check your internet and try again.';
+          helper.style.color = '#ff6b6b';
         } finally {
           submitButton.disabled = false;
         }
