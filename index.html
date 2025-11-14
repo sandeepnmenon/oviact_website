@@ -24,18 +24,18 @@
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">For women with PCOD/PCOS</p>
-            <h1>Understand your hormones. Decode your cycle. Feel in control.</h1>
+            <h1>We are building Oviact together.</h1>
             <p class="lead">
-              Oviact helps you track symptoms, sleep, mood and hormonal patterns, and
-              share meaningful reports with your OB/GYN.
+              If this mission speaks to you, we would love to have you involved.
             </p>
-
+            <p class="lead">
+              Whether you are someone with lived experience, a health professional, a researcher, or just someone who cares, you are welcome to join us.
+            </p>
             <form
               class="waitlist-form"
               method="POST"
-              action="https://formspree.io/f/your-form-id"
+              action="https://script.google.com/macros/s/AKfycbyAZUyC35OKipHRsD96DTfIgD1lSEHeq75Iyw19XNldo4wrKH8zTxIAWMH8bXPO9Z_J/exec"
             >
-              <!-- TODO: Replace the action URL above with your waitlist / forms service endpoint -->
               <div class="field-group">
                 <input
                   type="text"
@@ -53,7 +53,7 @@
                 />
               </div>
               <button type="submit" class="btn btn-accent">
-                Join the waitlist
+                Get Involved
               </button>
               <p class="form-helper">
                 We’ll only reach out with product updates and early access invites.
@@ -149,6 +149,34 @@
     <script>
       // Small helper script: update year in footer
       document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    
+      const form = document.querySelector('.waitlist-form');
+      const helper = form.querySelector('.form-helper');
+    
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+    
+        helper.textContent = 'Sending your details…';
+    
+        const formData = new FormData(form);
+    
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network error');
+          }
+    
+          helper.textContent = 'Thank you for joining Oviact\'s early community ♥';
+          form.reset();
+        } catch (err) {
+          helper.textContent = 'Something went wrong. Please try again in a bit.';
+          console.error(err);
+        }
+      });
+    </script>    
   </body>
 </html>
